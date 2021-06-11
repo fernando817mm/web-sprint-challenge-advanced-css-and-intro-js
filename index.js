@@ -1,4 +1,4 @@
-import { parse } from "@babel/core";
+// import { parse } from "@babel/core";
 
 export const artists = [
     {
@@ -212,6 +212,7 @@ Practice accessing data above by console.log-ing following items:
 //(1) Name of the first artist (0th index) in the array
 
 console.log(artists[0].name);
+//
 
 //(2) Bio of the third artist (2nd index) in the array 
 
@@ -299,14 +300,14 @@ Use lotsOfArt to do the following:
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
-function lotsOfArt(arr){
-  const newArr = [];
-  for(let i = 0; i < arr.length; i++){
-    if(arr[i].paintings > 100){
-      newArr.push(arr[i].name);
+function lotsOfArt(arr){ //arr is the parameter that will take the argument of any array you give it 
+  const newArr = []; //declaration of an empty array that will hold names of values passing the if condition
+  for(let i = 0; i < arr.length; i++){ //basic for loop or arr length provided by invoking the function 
+    if(arr[i].paintings > 100){ //arr[i] is targeting the specific index you're in which increments because of the for loop---.paintings is the name of the key so we can access its value--- >100 is the condition that must be met to run the code in it.
+      newArr.push(arr[i].name); //if value passed the condition above this will push the name value into the new array.
     }
   }
-  return newArr;
+  return newArr; //returns the new array after the for loop is finished running.
 }
 
 // 🎨🎨 STRETCH 🎨🎨//
@@ -320,7 +321,7 @@ In HTML, every artist and associated content uses the following structure:
     <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/starry-night-by-vincent-van-gogh-vincent-van-gogh.jpg"/>
 </div>
 <div class = "name">
-   <a href="https://en.wikipedia.org/wiki/Vincent_van_Gogh"> Vincent Van Gogh</a>
+  <a href="https://en.wikipedia.org/wiki/Vincent_van_Gogh"> Vincent Van Gogh</a>
 </div>
 <div class = "bio">Vincent Willem van Gogh (Dutch: [ˈvɪnsɛnt ˈʋɪləm vɑŋ ˈɣɔx] (listen); 30 March 1853 – 29 July 1890) was a Dutch Post-Impressionist painter who is among the most famous and influential figures in the history of Western art. In just over a decade he created about 2,100 artworks, including around 860 oil paintings, most of them in the last two years of his life. They include landscapes, still lifes, portraits and self-portraits, and are characterised by bold colours and dramatic, impulsive and expressive brushwork that contributed to the foundations of modern art. However, he was not commercially successful, and his suicide at 37 followed years of mental illness and poverty.</div>
 </div>
@@ -331,12 +332,22 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
-function getHTML(/* Code here */){
-
-    /* Code here */
-
+function getHTML(data){
+  for(let i = 0; i < data.length; i++){
+    console.log(`
+    <div id=“artist”>
+    <div class=“image”>
+    	<img src=” “>
+    </div>
+    <div class=“name”>
+    	<a href=“${data[i].wikipedia}“>${data[i].name}</a>
+    </div>
+    <div class=“bio”>${data[i].bio}</div>
+    `)
   }
+}
 
+getHTML(artists);
 
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
 Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
@@ -348,7 +359,7 @@ function randomize(/* Code here */){
   }
 
 
- /* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
+/* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
  Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
 
  
