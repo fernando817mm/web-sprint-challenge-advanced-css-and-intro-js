@@ -300,10 +300,10 @@ Use lotsOfArt to do the following:
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
-function lotsOfArt(arr){ //arr is the parameter that will take the argument of any array you give it 
-  const newArr = []; //declaration of an empty array that will hold names of values passing the if condition
-  for(let i = 0; i < arr.length; i++){ //basic for loop or arr length provided by invoking the function 
-    if(arr[i].paintings > 100){ //arr[i] is targeting the specific index you're in which increments because of the for loop---.paintings is the name of the key so we can access its value--- >100 is the condition that must be met to run the code in it.
+function lotsOfArt(arr){ //arr is the parameter that will take the argument of an array you give it when invoked
+  const newArr = []; //declaration of an empty array that will hold the names of values that pass the if condition
+  for(let i = 0; i < arr.length; i++){ //let i = 0; <-- declares i and sets it to 0, i < arr.length; <-- as long as i is less than the length of the array given when invoking the function the for loop will keep running, i++ <-- increments i by 1 everytime its ran ensuring that i=0 will eventually be i=arr.length which will break the loop.
+    if(arr[i].paintings > 100){ //arr[i] is targeting the specific index you're in which increments because of the for loop---     .paintings is the name of the key so we can access its value--- >100 is the condition that must be met to run the code in it.
       newArr.push(arr[i].name); //if value passed the condition above this will push the name value into the new array.
     }
   }
@@ -352,21 +352,22 @@ getHTML(artists);
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
 Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
-function randomize(/* Code here */){
-
-    /* Code here */
-
+function randomize(arr){
+  let buffer = [], start;
+  for(var i = arr.length; i >= arr.length && i > 0;i--) {
+    start = Math.floor(Math.random() * arr.length);
+    buffer.push(arr.splice(start, 1)[0]);
   }
+  return buffer;
+}
 
+console.log(randomize(artists));
 
 /* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
  Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
 
- 
- 
- 
- /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑*/
- function foo(){
+/* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑*/
+function foo(){
   console.log('its working');
   return 'bar';
 }
