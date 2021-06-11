@@ -1,3 +1,5 @@
+import { parse } from "@babel/core";
+
 export const artists = [
     {
       "id": 0,
@@ -230,11 +232,9 @@ console.log(artists[8].name);
  
  Example, if getArtistByIndex is invoked with the artists array and the number 0, it will return `the artist at index 0 is Amedeo Modigliani` */
 
-function getArtistByIndex(/*Your Code Here*/) {
-  /*Your Code Here*/
+function getArtistByIndex(arr, index) {
+  return `the artist at index ${arr[index].id} is ${arr[index].name}`
 }  
-
-
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use get20s to do the following: 
@@ -244,11 +244,16 @@ Use get20s to do the following:
 Example born in 1901 and died in 1959 - included -- born in 1889 and died in 1925 not included
 If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 
-function get20s(/*Your Code Here*/){
-  /*Your Code Here*/
+function get20s(arr){
+  const newArr = [];
+  for(let i = 0; i < arr.length; i++){
+    let year = parseInt(arr[i].years);
+    if(year >= 1900 && year <= 2000){
+      newArr.push(arr[i].name);
+    }
+  }
+  return newArr;
 }
-
-
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
  Use removeArtist to do the following:
