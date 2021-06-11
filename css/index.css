@@ -142,7 +142,7 @@ button:hover{
     /* Header Styles */
 
     nav{
-        width:40%;
+        width:45%;
     }
 
     nav a{
@@ -165,17 +165,11 @@ button:hover{
         padding: 1% 2%;
     }
 
-    .title-container div {	
-        background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/John_Martin_-_The_Plains_of_Heaven_-_Google_Art_Project.jpg/1920px-John_Martin_-_The_Plains_of_Heaven_-_Google_Art_Project.jpg');		
-        background-position: center;	
-        color: white;	
+    .title-container div {		
         width:100%;
-        display:flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         height:45vh;
-        margin:5% 0;
+        background-size: 200%;
+        background-repeat: no-repeat;
     }
     
     .title-container hr{
