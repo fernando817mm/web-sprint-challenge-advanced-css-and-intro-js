@@ -1,3 +1,5 @@
+// import { parse } from "@babel/core";
+
 export const artists = [
     {
       "id": 0,
@@ -209,30 +211,30 @@ Practice accessing data above by console.log-ing following items:
 
 //(1) Name of the first artist (0th index) in the array
 
+console.log(artists[0].name); /* artists[0] <-- artists is the name of the array, and [n] is the index that you want. in this case the n is 0 but it can be any number and will only work as expected if that index exists in the array | .name <-- .name is dot notation and its accessing the value of the key called name | alltogether the console is logging the key value of name in the index of 0 inside of the array called artists. */
 
 //(2) Bio of the third artist (2nd index) in the array 
 
-
+console.log(artists[2].bio); /* artists[2] <-- as explained above, this is targeting the index of 2 inside of the array called artists | .bio <-- .bio is dot notation and this time its accessing the value for the key named bio */
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 (no function needed) 
 There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
 
-
+artists[8].name = 'Vincent Van Gogh'; /* accesses the key value pair in the index of 8 inside the array artists and reassigns the value to what is specified. */
+console.log(artists[8].name); //console logs the new value assigned to the key named name
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀  
- Use getArtistByIndex to do the following:
- 1. Receive an array
- 2. Receive a number, which is the desired index in the array.
- 3. Return a string in the format `the artist at index {id} is {name}`
- 
- Example, if getArtistByIndex is invoked with the artists array and the number 0, it will return `the artist at index 0 is Amedeo Modigliani` */
+Use getArtistByIndex to do the following:
+1. Receive an array
+2. Receive a number, which is the desired index in the array.
+3. Return a string in the format `the artist at index {id} is {name}`
 
-function getArtistByIndex(/*Your Code Here*/) {
-  /*Your Code Here*/
+Example, if getArtistByIndex is invoked with the artists array and the number 0, it will return `the artist at index 0 is Amedeo Modigliani` */
+
+function getArtistByIndex(arr, index) { //function that accepts 2 parameters which will be replaced with arguments when invoked.
+  return `the artist at index ${arr[index].id} is ${arr[index].name}` /* string literal using ` <-- a back tick is used for when a string contains both " and ' | it's also a new form of concating things together using ${} instead of + */
 }  
-
-
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use get20s to do the following: 
@@ -242,11 +244,16 @@ Use get20s to do the following:
 Example born in 1901 and died in 1959 - included -- born in 1889 and died in 1925 not included
 If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 
-function get20s(/*Your Code Here*/){
-  /*Your Code Here*/
+function get20s(arr){ /* function with a parameter called arr, parameter will be replaced with given argument when invoked */
+  const newArr = []; /* declaring new array called newArr which will contain all values that pass the if condition */
+  for(let i = 0; i < arr.length; i++){ /* for loop that increments by 1 for as long as the length of the array given when invoked */
+    let year = parseInt(arr[i].years); /* declaring a new variable called year and assigning it a value of years in number form | parseInt() is a method that turns strings to numbers | inside of the () in parseInt is the key named years at the specific index the loop is in */
+    if(year >= 1900 && year <= 2000){ /* if condition is checking to see if the variable year is between 1900 and 2000 */
+      newArr.push(arr[i].name); /* pushing the key name of the specific index the loop is in into the newArr if it passed the condition above */
+    }
+  }
+  return newArr; /* returning newArr outside of the loop */
 }
-
-
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
  Use removeArtist to do the following:
@@ -257,10 +264,10 @@ function get20s(/*Your Code Here*/){
  
  For example, if removeArtist is invoked with the artists array and the number 0, it will remove Amedeo Modigliani from our dataset and return the number 19. */
 
-function removeArtist(/*Your Code Here*/){
-   /*Your Code Here*/
+function removeArtist(arr, index){ //2 parameters called arr and index which will be replaced with arguments when invkoked
+  arr.splice(arr[index], 1); //splicing the specified index for a length of 1 in the parameter arr
+  return arr.length; //returning the length of the array and NOT the array itself.
 }
-   
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use addArtist to do the following: 
@@ -278,8 +285,9 @@ Use addArtist to do the following:
 
 Example: addArtist(artists) should return the artists array with the above object added to the end of the array. */
 
-function addArtist(/*Your Code Here*/){
-    /*Your Code Here*/
+function addArtist(arr){ //one parameter called arr
+    arr.push({id: 20, name: 'Fernando Martinez', years: '2001 - 2021', genre: 'Web Design', nationality: 'American', bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nulla tellus, tempus id lectus quis, varius lacinia enim. Nullam eu.'}) //pushing the object written onto the arr parameter
+    return arr; //returning the new arr
   }
 
   
@@ -291,12 +299,15 @@ Use lotsOfArt to do the following:
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
-function lotsOfArt(/*Your Code Here*/){
-  /*Your Code Here*/
+function lotsOfArt(arr){ //arr is the parameter that will take the argument of an array you give it when invoked
+  const newArr = []; //declaration of an empty array that will hold the names of values that pass the if condition
+  for(let i = 0; i < arr.length; i++){ //let i = 0; <-- declares i and sets it to 0, i < arr.length; <-- as long as i is less than the length of the array given when invoking the function the for loop will keep running, i++ <-- increments i by 1 everytime its ran ensuring that i=0 will eventually be i=arr.length which will break the loop.
+    if(arr[i].paintings > 100){ //arr[i] is targeting the specific index you're in which increments because of the for loop---     .paintings is the name of the key so we can access its value--- >100 is the condition that must be met to run the code in it.
+      newArr.push(arr[i].name); //if value passed the condition above this will push the name value into the new array.
+    }
+  }
+  return newArr; //returns the new array after the for loop is finished running.
 }
-
-
-
 
 // 🎨🎨 STRETCH 🎨🎨//
 /* 💪💪💪💪💪💪 STRETCH 1: 💪💪💪💪💪💪 
@@ -309,7 +320,7 @@ In HTML, every artist and associated content uses the following structure:
     <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/starry-night-by-vincent-van-gogh-vincent-van-gogh.jpg"/>
 </div>
 <div class = "name">
-   <a href="https://en.wikipedia.org/wiki/Vincent_van_Gogh"> Vincent Van Gogh</a>
+  <a href="https://en.wikipedia.org/wiki/Vincent_van_Gogh"> Vincent Van Gogh</a>
 </div>
 <div class = "bio">Vincent Willem van Gogh (Dutch: [ˈvɪnsɛnt ˈʋɪləm vɑŋ ˈɣɔx] (listen); 30 March 1853 – 29 July 1890) was a Dutch Post-Impressionist painter who is among the most famous and influential figures in the history of Western art. In just over a decade he created about 2,100 artworks, including around 860 oil paintings, most of them in the last two years of his life. They include landscapes, still lifes, portraits and self-portraits, and are characterised by bold colours and dramatic, impulsive and expressive brushwork that contributed to the foundations of modern art. However, he was not commercially successful, and his suicide at 37 followed years of mental illness and poverty.</div>
 </div>
@@ -320,31 +331,42 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
-function getHTML(/* Code here */){
-
-    /* Code here */
-
+function getHTML(data){ //one argument named data 
+  for(let i = 0; i < data.length; i++){ //repeating the code below as many times as the length of the parameter
+    console.log(`
+    <div id=“artist”>
+    <div class=“image”>
+    	<img src=” “>
+    </div>
+    <div class=“name”>
+    	<a href=“${data[i].wikipedia}“>${data[i].name}</a>
+    </div>
+    <div class=“bio”>${data[i].bio}</div>
+    `) //string literal with proper HTML indention
   }
+}
 
+getHTML(artists);
 
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
 Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
-function randomize(/* Code here */){
-
-    /* Code here */
-
+function randomize(arr){
+  let buffer = [], start;
+  for(var i = arr.length; i >= arr.length && i > 0;i--) {
+    start = Math.floor(Math.random() * arr.length);
+    buffer.push(arr.splice(start, 1)[0]);
   }
+  return buffer;
+}
 
+console.log(randomize(artists));
 
- /* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
+/* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
  Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
 
- 
- 
- 
- /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑*/
- function foo(){
+/* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑*/
+function foo(){
   console.log('its working');
   return 'bar';
 }
